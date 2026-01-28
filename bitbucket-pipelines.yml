@@ -1,11 +1,13 @@
 image: atlassian/default-image:4
 
 pipelines:
-  target:
+  branches:
     main:
       - step:
           name: Push to GitHub
           script:
             - git remote add github git@github.com:Gaurav2327/push-repo.git || true
-            - git push github --all
+            - git fetch origin main
+            - git checkout main
+            - git push github main:main
             - git push github --tags
